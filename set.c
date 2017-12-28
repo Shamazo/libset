@@ -3,6 +3,17 @@
 #include <string.h>  /* strcpy */
 #include "set.h"
 
+/*
+NAME: create_set
+INPUTS: comp_func, a function which takes in two elements (a,b ) and returns 
+1 if a >. b, -1 if a < b and 0 if a == b. If your elements do not have 
+a meaningful order this function can arbitrarily return -1 or 1 for a given
+pair of inputs as long as it returns the same thing on the same inputs and 
+returns 0 if they are the same. dest_func should free the input key. 
+print_func is only required if you intend to use print_set. Otherwise
+you can pass null_function. 
+*/
+
 set create_set(int (*comp_func)(const void*, const void*),
 			    void (*dest_func)(void*),  
 			    void (*print_func)(const void*),
@@ -78,6 +89,7 @@ int set_count(set seta){
     rb_count(seta, seta->root->left);
 }
 
+
 /*
 NAME: set_union
 INPUTS: two sets to take the union of
@@ -144,6 +156,15 @@ set set_union(set set1, set set2){
     rb_sorted_array_to_rb_tree(out_set, new_merge_arr, 0, (k-1));
     return out_set;
 }
+
+
+/*
+NAME: set_intersection
+INPUTS: two sets to take the intersection of.
+OUTPUT: new set containing every element which is contained in both sets.
+The new set is memory independent of the inputs. i.e you can destroy the 
+input sets without effecting the output set. 
+*/
 
 set set_intersection(set set1, set set2){
     if(set1->compare != set2->compare || set1->key_size != set2->key_size

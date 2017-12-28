@@ -1,5 +1,5 @@
-#Libset
-##A basic set library written in c.
+# Libset
+## A basic set library written in c.
 This is a implementation of sets using red-black trees. The complexity of various operations is described in the following table.
 
 | Operation | Complexity|

@@ -175,12 +175,7 @@ rb_tree* rb_tree_create( int (*comp_func) (const void*, const void*),
     /*  see the comment in the rb_tree structure in rb_tree.h */
     /*  for information on nil and root */
     new_tree->nil = temp = (rb_node*) safe_malloc(sizeof(rb_node));
-    // temp;
     temp->parent=temp->left=temp->right=temp;
-    /*
-    temp->parent = temp;
-    temp->left = temp;
-    temp->right = temp; */
     temp->red = 0;
     temp->key = 0;
     temp = (rb_node*) safe_malloc(sizeof(rb_node));
@@ -759,8 +754,6 @@ rb_node* rb_array_to_tree_helper(rb_tree* tree, rb_node* curr_node, rb_node* arr
     int mid = (start + end)/2;
     rb_node* middle = array[mid];
     middle->red = colour;
-    printf("PRINTING MIDDLE\n");
-    tree->print_key(middle->key);
     middle->parent = curr_node;
     middle-> left = tree->nil;
     middle-> right = tree->nil;
@@ -869,18 +862,6 @@ rb_tree* rb_merge(rb_tree* tree1, rb_tree* tree2){
     for new elements with the same keys/info */
     rb_node* new_merge_arr[new_size];
     rb_clone_nodes(tree1, arr_merge, new_merge_arr, new_size);
-
-/*
-    int ab = 0;
-    while (ab < k){
-        //rb_node* temp = arr[j];
-        rb_node * temp = new_merge_arr[ab];
-        //tree1->print_key(temp->key);
-        //int x = *(int*)temp->key;   
-        printf("array print key ptr: %p \n", temp->key);
-        ab++;
-    } */
-
     rb_tree* out_tree = rb_tree_create(tree1->compare,
                                     tree1->destroy_key,
                                     tree1->destroy_info,

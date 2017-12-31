@@ -184,9 +184,6 @@ set set_intersection(set set1, set set2){
     // merge the two flattened trees only adding elements in common
     while (i < size1 && j < size2){
             // put the smallest element in arr_merge
-            printf("a is: %d \n", *(int*)arr1[i]->key);
-            printf("b is %d \n", *(int*)arr2[j]->key);
-            printf("compare is %d \n",set1->compare(arr1[i]->key, arr2[j]->key));
             if (set1->compare(arr1[i]->key, arr2[j]->key) == 0){
                 arr_merge[k] = arr1[i];
                 i++;

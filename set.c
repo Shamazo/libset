@@ -14,7 +14,7 @@ print_func is only required if you intend to use print_set. Otherwise
 you can pass null_function. 
 */
 
-set create_set(int (*comp_func)(const void*, const void*),
+set set_create(int (*comp_func)(const void*, const void*),
 			    void (*dest_func)(void*),  
 			    void (*print_func)(const void*),
                 size_t key_size) {
@@ -23,7 +23,7 @@ set create_set(int (*comp_func)(const void*, const void*),
 	return(new_set);
 }
 
-void print_set(set seta){
+void set_print(set seta){
 	rb_tree_print(seta);
 }
 
@@ -34,7 +34,7 @@ OUPUTS: The element if sucessfully inserted and NULL if it is already
 a member of the set
 This is very similar to rb_merge, but it avoids duplicates. 
 */
-element insert_element(set seta, void * key){
+element set_insert_element(set seta, void * key){
 	if (rb_lookup(seta, key)){
         return(NULL);
     } else {
@@ -49,7 +49,7 @@ NAME: delete_element
 INPUTS: set to delete from and a pointer to the key value to delete
 OUTPUT: None
 */
-void delete_element(set seta, void * key){
+void set_delete_element(set seta, void * key){
     element temp = rb_lookup(seta, key);
     rb_delete(seta, temp);
 }

@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 	/* creating an empty set of integers. The last argument is the size of 
 	each element in the set. This is neccassary to allow the library to be
 	as general as possible and allow for any type of element. */
-	set seta = create_set(int_comp, dint, print_int, sizeof(int));
+	set seta = set_create(int_comp, dint, print_int, sizeof(int));
 	/* Sets keep track of elements using pointers. Whenever you insert an
 	element you pass in a pointer. 
 	*/
@@ -37,19 +37,19 @@ int main(int argc, char* argv[]) {
 	*z = 12;
 	*w = 11;
 	*u = 8;
-	insert_element(seta, x);
-	insert_element(seta, y);
-	insert_element(seta, u);
-	insert_element(seta, w);
-	insert_element(seta, z);
+	set_insert_element(seta, x);
+	set_insert_element(seta, y);
+	set_insert_element(seta, u);
+	set_insert_element(seta, w);
+	set_insert_element(seta, z);
 
 	// get the number of elements in a set
 	int sizea = set_count(seta);
 	// print a set (currently very ugly WIP)
-	print_set(seta);
+	set_print(seta);
 
 	// create another set
-	set setb = create_set(int_comp, dint, print_int, sizeof(int));
+	set setb = set_create(int_comp, dint, print_int, sizeof(int));
 	int * a = malloc(sizeof(int));
 	int * b = malloc(sizeof(int));
 	int * c = malloc(sizeof(int));
@@ -60,19 +60,19 @@ int main(int argc, char* argv[]) {
 	*c = 5;
 	*d = 21;
 	*e = 2;
-	insert_element(setb, a);
-	insert_element(setb, b);
-	insert_element(setb, c);
-	insert_element(setb, d);
-	insert_element(setb, e);
+	set_insert_element(setb, a);
+	set_insert_element(setb, b);
+	set_insert_element(setb, c);
+	set_insert_element(setb, d);
+	set_insert_element(setb, e);
 
 
 	set union_set = set_union(seta, setb);
 	set inter_set = set_intersection(seta, setb);
 	printf("PRINTING inter_set \n");
-	print_set(inter_set);
+	set_print(inter_set);
 	printf("PRINTING union_set: \n");
-	print_set(union_set);
+	set_print(union_set);
 
 	/*destroying the sets frees them and their elements from memory.
 	 i.e x,y,y,w,z etc are freed after this 

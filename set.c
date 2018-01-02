@@ -23,10 +23,17 @@ set set_create(int (*comp_func)(const void*, const void*),
 	return(new_set);
 }
 
-/*needs to be redone after a iter function is implemented, currently ugly 
-but usable*/
+
+/*
+NMAEL set_print
+INPUTS: set to print
+OUPUT: None
+prints the set using the user supplied print functions
+*/
 void set_print(set seta){
-	rb_tree_print(seta);
+    printf("{");
+    set_iter(seta, seta->print_key);
+    printf("} \n");
 }
 
 /*
@@ -55,7 +62,7 @@ inserts all elements/
 
 int set_list_insert(set seta, void* array[], size_t length){
     element null_check;
-    for (int i = 0; i < length; i++){
+    for (size_t i = 0; i < length; i++){
         null_check = set_insert_element(seta, array[i]);
     }
     if (null_check){
@@ -232,3 +239,32 @@ set set_intersection(set set1, set set2){
     rb_sorted_array_to_rb_tree(out_set, new_merge_arr, 0, (k-1));
     return out_set;
 }
+
+/*
+NAME: set_iter_helper
+INPUTS: set being iterated over, function being applied and current element
+OUTPUT: None
+This is a recursive helper function called by set_iter. 
+*/
+
+void set_iter_helper(set seta, void (*iter_func)(void *key), element curr_element){
+    element nil = seta->nil;
+    if (curr_element != nil){
+        iter_func(curr_element->key);
+        set_iter_helper(seta, iter_func, curr_element->right);
+        set_iter_helper(seta, iter_func, curr_element->left);
+    }
+}
+
+
+/*
+NAME: set_iter
+INPUTS: set to iterate over and function which takes in the keys in that set
+OUTPUT: None
+Applyes the input function to every element in the set 
+*/
+
+void set_iter(set seta, void (*iter_func)(void* key)){
+    element root = seta->root->left;
+    set_iter_helper(seta, iter_func, root);
+} 

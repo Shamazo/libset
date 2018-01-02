@@ -14,7 +14,7 @@ void dint(void * a){
 	}
 
 void print_int(const int* a){
-		printf("%d\n",*a);
+		printf("%d, ",*a);
 	}
 
 int main(int argc, char* argv[]) {
@@ -84,6 +84,8 @@ int main(int argc, char* argv[]) {
 	set_print(union_set);
 	printf("PRINTING list_set: \n");
 	set_print(list_set);
+	printf("\n \n");
+	set_iter(setb, print_int);
 
 	/*destroying the sets frees them and their elements from memory.
 	 i.e x,y,y,w,z etc are freed after this 

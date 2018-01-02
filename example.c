@@ -17,6 +17,10 @@ void print_int(const int* a){
 		printf("%d, ",*a);
 	}
 
+void set_sum(int *e, int* sum){
+		*sum += *e;
+		return;
+	}
 int main(int argc, char* argv[]) {
 
 
@@ -76,6 +80,14 @@ int main(int argc, char* argv[]) {
 	set list_set = set_create(int_comp, dint, print_int, sizeof(int));
 	set_list_insert(list_set, iarray, 10);
 
+	// using set_iter
+	int *sum = malloc(sizeof(int));
+	*sum = 0;
+	set_iter(list_set, set_sum, sum);
+	printf("sum is: %d\n", *sum);
+	free(sum);
+
+	//unions and intersections 
 	set union_set = set_union(seta, setb);
 	set inter_set = set_intersection(seta, setb);
 	printf("PRINTING inter_set: \n");
@@ -84,8 +96,6 @@ int main(int argc, char* argv[]) {
 	set_print(union_set);
 	printf("PRINTING list_set: \n");
 	set_print(list_set);
-	printf("\n \n");
-	set_iter(setb, print_int);
 
 	/*destroying the sets frees them and their elements from memory.
 	 i.e x,y,y,w,z etc are freed after this 

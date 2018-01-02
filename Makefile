@@ -12,6 +12,6 @@ lib: set.c rb_tree.c
 test: test.c
 	gcc -o test.o test.c -L. -lset
 example: example.c
-	gcc -o example.o example.c -L. -lset
+	gcc -g -o example.o example.c -L. -lset
 memcpytest: memcpytest.c
 	gcc -g memcpytest.c -o memcpytest.o

@@ -21,4 +21,4 @@ void set_destroy(set seta);
 int set_count(set seta);
 set set_union(set set1, set set2);
 set set_intersection(set set1, set set2);
-void set_iter(set seta, void (*iter_func)(void* key));
+void set_iter(set seta, void (*iter_func)(void* key, void* data), void* data);

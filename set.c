@@ -31,8 +31,9 @@ OUPUT: None
 prints the set using the user supplied print functions
 */
 void set_print(set seta){
+    void* nullp = NULL;
     printf("{");
-    set_iter(seta, seta->print_key);
+    set_iter(seta, seta->print_key, nullp);
     printf("} \n");
 }
 
@@ -247,24 +248,27 @@ OUTPUT: None
 This is a recursive helper function called by set_iter. 
 */
 
-void set_iter_helper(set seta, void (*iter_func)(void *key), element curr_element){
+void set_iter_helper(set seta, void (*iter_func)(void *key, void* data), element curr_element, void* data){
     element nil = seta->nil;
     if (curr_element != nil){
-        iter_func(curr_element->key);
-        set_iter_helper(seta, iter_func, curr_element->right);
-        set_iter_helper(seta, iter_func, curr_element->left);
+        iter_func(curr_element->key, data);
+        set_iter_helper(seta, iter_func, curr_element->right, data);
+        set_iter_helper(seta, iter_func, curr_element->left, data);
     }
 }
 
 
 /*
 NAME: set_iter
-INPUTS: set to iterate over and function which takes in the keys in that set
+INPUTS: set to iterate over, function which takes in the keys in that set 
+and a pointer to data and then finally the data pointer. The idea with
+the data pointer is to allow the user to keep track of some information
+while iterating over the set. See example of sum of a set in example.c
 OUTPUT: None
 Applyes the input function to every element in the set 
 */
 
-void set_iter(set seta, void (*iter_func)(void* key)){
+void set_iter(set seta, void (*iter_func)(void* key, void* data), void* data){
     element root = seta->root->left;
-    set_iter_helper(seta, iter_func, root);
+    set_iter_helper(seta, iter_func, root, data);
 } 

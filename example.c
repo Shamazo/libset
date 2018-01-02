@@ -66,13 +66,23 @@ int main(int argc, char* argv[]) {
 	set_insert_element(setb, d);
 	set_insert_element(setb, e);
 
+	int *iarray[10];
+	for(int i = 0; i < 10; i++){
+		int * temp = malloc(sizeof(int));
+		*temp = i;
+		iarray[i] = temp;
+	}
+	set list_set = set_create(int_comp, dint, print_int, sizeof(int));
+	set_list_insert(list_set, iarray, 10);
 
 	set union_set = set_union(seta, setb);
 	set inter_set = set_intersection(seta, setb);
-	printf("PRINTING inter_set \n");
+	printf("PRINTING inter_set: \n");
 	set_print(inter_set);
 	printf("PRINTING union_set: \n");
 	set_print(union_set);
+	printf("PRINTING list_set: \n");
+	set_print(list_set);
 
 	/*destroying the sets frees them and their elements from memory.
 	 i.e x,y,y,w,z etc are freed after this 

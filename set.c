@@ -4,7 +4,7 @@
 #include "set.h"
 
 /*
-NAME: create_set
+NAME: set_create
 INPUTS: comp_func, a function which takes in two elements (a,b ) and returns 
 1 if a >. b, -1 if a < b and 0 if a == b. If your elements do not have 
 a meaningful order this function can arbitrarily return -1 or 1 for a given
@@ -23,12 +23,14 @@ set set_create(int (*comp_func)(const void*, const void*),
 	return(new_set);
 }
 
+/*needs to be redone after a iter function is implemented, currently ugly 
+but usable*/
 void set_print(set seta){
 	rb_tree_print(seta);
 }
 
 /*
-NAME: insert_element
+NAME: set_insert_element
 INPUTS: Set to insert into and key to insert
 OUPUTS: The element if sucessfully inserted and NULL if it is already
 a member of the set
@@ -40,6 +42,20 @@ element set_insert_element(set seta, void * key){
     } else {
         void * info;
         return(rb_tree_insert(seta, key, info));
+    }
+}
+
+/*
+NAME: set_list_insert
+INPUTS: set to insert into, array of pointers to keys and length of array
+OUTPUT: 0 if every element inserted is not in the set
+1 if one or more of the elements is already in the set, but still successfully
+inserts all elements/
+*/
+
+int set_list_insert(set seta, void* array[], size_t length){
+    for(int i = 0; i < length; i++){
+        set_insert_element(seta, array[i]);
     }
 }
 

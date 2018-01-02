@@ -745,6 +745,14 @@ void rb_flatten (rb_tree* tree, rb_node* node, rb_node * arr[]){
 }
 
 
+/*
+NAME: rb_array_to_tree_helper
+INPUTS: Tree, the last node processed, the array of all nodes, indices of the
+array of the range of nodes to insert and the correct colour of the node to be
+inserted
+OUTPUTS: the node which was inserted
+This is recursive and should only be called in rb_sorted_array_to_rb_tree 
+*/
 //need new nodes, I am modifying the old ones and super fucking them up in the old trees. 
 // introduces problem of keys and info, should I create new keys and info in new memory when I merge two trees? probably. 
 rb_node* rb_array_to_tree_helper(rb_tree* tree, rb_node* curr_node, rb_node* array[], int start, int end, int colour){

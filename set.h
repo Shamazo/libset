@@ -12,7 +12,8 @@ set set_create(int (*comp_func)(const void*, const void*),
     void (*dest_func)(void*),
     void (*print_func)(const void*),
     size_t key_size);
-element set_insert_element(set seta, void * key); 
+element set_insert_element(set seta, void * key);
+int set_list_insert(set seta, void* array[], size_t length); 
 int set_is_member(set seta, void * key);
 void set_delete_element(set seta, void * key);
 void set_print(set seta); 

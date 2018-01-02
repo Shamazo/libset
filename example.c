@@ -66,6 +66,7 @@ int main(int argc, char* argv[]) {
 	set_insert_element(setb, d);
 	set_insert_element(setb, e);
 
+	//inserting elements into a set from a list
 	int *iarray[10];
 	for(int i = 0; i < 10; i++){
 		int * temp = malloc(sizeof(int));
@@ -91,4 +92,5 @@ int main(int argc, char* argv[]) {
 	set_destroy(setb);
 	set_destroy(union_set);
 	set_destroy(inter_set);
+	set_destroy(list_set);
 }

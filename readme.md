@@ -13,7 +13,6 @@ The complexity of various operations is described in the following table.
 |set is member| O(log(n))  |
 
 To do list:
-* insert via array of pointers
 * implement a function which applies a given function to every element in the set
 and generates a new set. Similar to list maps in some functional langauges.
 Perhaps also implment an iter function.

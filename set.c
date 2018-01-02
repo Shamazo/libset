@@ -54,8 +54,14 @@ inserts all elements/
 */
 
 int set_list_insert(set seta, void* array[], size_t length){
-    for(int i = 0; i < length; i++){
-        set_insert_element(seta, array[i]);
+    element null_check;
+    for (int i = 0; i < length; i++){
+        null_check = set_insert_element(seta, array[i]);
+    }
+    if (null_check){
+        return 1;
+    } else {
+        return 0;
     }
 }
 

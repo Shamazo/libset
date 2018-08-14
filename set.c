@@ -193,7 +193,7 @@ NAME: set_intersection
 INPUTS: two sets to take the intersection of.
 OUTPUT: new set containing every element which is contained in both sets.
 The new set is memory independent of the inputs. i.e you can destroy the 
-input sets without effecting the output set. 
+input sets without affecting the output set. 
 */
 
 set set_intersection(set set1, set set2){
@@ -248,7 +248,7 @@ OUTPUT: None
 This is a recursive helper function called by set_iter. 
 */
 
-void set_iter_helper(set seta, void (*iter_func)(void *key, void* data), element curr_element, void* data){
+void set_iter_helper(set seta, void (*iter_func)(void* key, void* data), element curr_element, void* data){
     element nil = seta->nil;
     if (curr_element != nil){
         iter_func(curr_element->key, data);

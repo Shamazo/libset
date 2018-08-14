@@ -40,7 +40,7 @@ INPUTS: stack
 OUTPUT: top of stack if it exists and 0 if it does not
 */
 int stack_not_empty(stk_stack * working_stack) {
-  return( working_stack ? (int) working_stack->top : 0);
+    return(working_stack ? (DATA_TYPE)working_stack->top : 0);
 }
 
 
